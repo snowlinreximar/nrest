@@ -12,6 +12,7 @@ export class UsersController {
     @Get()
         findAll(): Promise<User[]> {
             return this.usersService.findAll();
+            console.log ('this finds all');
         }
 
     @Get(':id')
