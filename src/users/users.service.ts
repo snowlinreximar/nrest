@@ -12,7 +12,7 @@ export class UsersService {
     }
 
     async findOne(id: string): Promise<User> {
-        return await this.userModel.findOne({ _id: id});
+        return await this.userModel.findOne({ _id: id}, 'password emailid');
     }
 
     async create(user: User): Promise<User> {
