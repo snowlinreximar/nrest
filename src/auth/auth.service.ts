@@ -22,11 +22,12 @@ export class AuthService {
     }
 
     signUser(id: string, email: string, type: string ){
-        return this.jwtService.sign({
+        return { access_token: this.jwtService.sign({
             sub: id,
             email,
             claim: type
-        })
+        
+        })}
     }
 
 }
