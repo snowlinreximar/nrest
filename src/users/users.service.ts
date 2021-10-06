@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { User } from './interfaces/user.interface';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
@@ -19,6 +19,13 @@ export class UsersService {
         const newUser = new this.userModel(user);
         return await newUser.save();
     }
+
+    async findExisting(user: User): Promise<User> {
+        const existUser =  await this.userModel.findOne({ emailid: user.emailid});
+        if (existUser) throw new ConflictException('User Exists');
+        return this.create(user);
+    }
+    
 
     async delete(id: string): Promise<User>{
         return await this.userModel.findByIdAndRemove(id);

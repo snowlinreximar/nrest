@@ -10,7 +10,7 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   
-  @Get()
+  @Get('/products')
   @UseGuards(AuthGuard('jwt')) 
   getProducts(): string {
     return this.appService.getProducts();

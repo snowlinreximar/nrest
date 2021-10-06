@@ -27,7 +27,7 @@ export class AuthService {
             email,
             claim: type
         
-        })}
+        }, {expiresIn: '8h'})}
     }
 
 }
